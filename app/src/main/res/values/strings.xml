@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FyberChallenge</string>
+    <string name="uid_hint">User ID, provided as simple data</string>
+    <string name="application_id_provided_as_simple_data">Application ID, provided as simple data</string>
+    <string name="api_key_hint">API Key</string>
+    <string name="request">Request</string>
+    <string name="custom_parameter">Custom parameter</string>
+</resources>
