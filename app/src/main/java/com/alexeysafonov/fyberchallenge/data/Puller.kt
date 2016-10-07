@@ -1,9 +1,7 @@
 package com.alexeysafonov.fyberchallenge.data
 
-import android.util.Log
 import com.alexeysafonov.fyberchallenge.api.FyberApi
 import rx.Scheduler
-import java.util.*
 
 /**
  *
@@ -14,9 +12,6 @@ open class Puller (val api: FyberApi,
 
     open fun request(request: Request) {
         try {
-            Log.d("BLAH", "line is " + request.line)
-            Log.d("BLAH", "hash is " + request.sha1)
-            Log.d("BLAH", "time stamp now is " + Calendar.getInstance().timeInMillis)
             val observable = if (request.pub0 == null)
                 api.getOffers(request.format,
                         request.appId,
@@ -45,10 +40,17 @@ open class Puller (val api: FyberApi,
             val response = observable
                     .subscribeOn(workingThread)
                     .observeOn(communicationThread)
-                    .subscribe({request.onSuccess(it)},
-                            {if (it != null) request.onFailure(it)
-                            else request.onFailure(Exception())})
-        } catch (e: Exception) {
+                    .subscribe(
+                            {
+                                request.onSuccess(it)
+                            },
+                            {
+                                if (it != null)
+                                    request.onFailure(it)
+                                else
+                                    request.onFailure(Exception())
+                            })
+        } catch (e: Throwable) {
             request.onFailure(e)
         }
     }

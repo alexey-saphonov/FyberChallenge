@@ -4,10 +4,7 @@ import com.alexeysafonov.fyberchallenge.api.FyberApi
 import com.alexeysafonov.fyberchallenge.data.Puller
 import com.alexeysafonov.fyberchallenge.data.Request
 import com.alexeysafonov.fyberchallenge.model.*
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import org.junit.Test
 import rx.Observable
 import rx.Subscriber
@@ -26,7 +23,7 @@ class PullerTest {
     val MOCK_OFFERS = FyberOffer(NOT_IMPORTANT_STRING, NOT_IMPORTANT_INT, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, listOf(FyberOfferType(1, NOT_IMPORTANT_STRING)), FyberThumbnail(NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING), 1, FyberAmount(1, NOT_IMPORTANT_STRING))
     val MOCK_RESPONSE = FyberResponse(NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_INT, NOT_IMPORTANT_INT, MOCK_INFORMATION, listOf(MOCK_OFFERS))
 
-    val mockRequest = mock<Request>()
+    val mockRequest = spy<Request>(Request(NOT_IMPORTANT_STRING, NOT_IMPORTANT_INT, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_STRING, NOT_IMPORTANT_INT as Long))
     val mockApi = mock<FyberApi>()
     val testThread = Schedulers.test()
     val fixture = Puller(mockApi, testThread, testThread)

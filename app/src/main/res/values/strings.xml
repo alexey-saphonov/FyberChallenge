@@ -5,4 +5,7 @@
     <string name="api_key_hint">API Key</string>
     <string name="request">Request</string>
     <string name="custom_parameter">Custom parameter</string>
+    <string name="payout">payout</string>
+    <string name="no_offers">No offers</string>
+    <string name="unknown_error">Unknown</string>
 </resources>
